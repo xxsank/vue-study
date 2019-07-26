@@ -41,6 +41,9 @@ export default {
     this.headerTop = this.header.offsetTop
     window.addEventListener('scroll', this.detectWindowScrollY)
   },
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.detectWindowScrollY)
+  },
   methods: {
     detectWindowScrollY() {
       this.scrolled = window.scrollY > this.headerTop
@@ -49,9 +52,6 @@ export default {
         ? header.classList.add('scrolled')
         : header.classList.remove('scrolled')
     }
-  },
-  beforeDestroy() {
-    window.removeEventListener('scroll', this.detectWindowScrollY)
   }
 }
 </script>
